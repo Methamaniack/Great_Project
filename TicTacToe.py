@@ -1,46 +1,111 @@
-#This is base Tic Tac Toe without any opponent
+import random
+#This is Tic Tac Toe with another player
+bot = "O"
+#while bot != "1" and bot != "2":
+#    bot = input("Please enter either 1 or 2. Are there 1 or 2 players ? ")
+#bot = int(bot)
 player = "X"
-s1 = " "
-s2 = " "
-s3 = " "
-s4 = " "
-s5 = " "
-s6 = " "
-s7 = " "
-s8 = " "
-s9 = " "
+squares = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+
+randChoice = []
+for index, square in enumerate(squares):
+    if square == " ":
+        randChoice.append(index)
+print(randChoice)
+squares[0] = " "
+squares[1] = " "
+squares[2] = " "
+squares[3] = " "
+squares[4] = " "
+squares[5] = " "
+squares[6] = " "
+squares[7] = " "
+squares[8] = " "
 win = "no"
 def showGrid():
-    print(f" {s1} | {s2} | {s3}\n {s4} | {s5} | {s6}\n {s7} | {s8} | {s9}")
+    print(f"___________\n {squares[0]} | {squares[1]} | {squares[2]}\n {squares[3]} | {squares[4]} | {squares[5]}\n {squares[6]} | {squares[7]} | {squares[8]}")
 while win == "no":
     selected = int(input("Select a square : "))
-    if s1 == " " and selected == 1:
-        s1 = player
-    if s2 == " " and selected == 2:
-        s2 = player
-    if s3 == " " and selected == 3:
-        s3 = player
-    if s4 == " " and selected == 4:
-        s4 = player
-    if s5 == " " and selected == 5:
-        s5 = player
-    if s6 == " " and selected == 6:
-        s6 = player
-    if s7 == " " and selected == 7:
-        s7 = player
-    if s8 == " " and selected == 8:
-        s8 = player
-    if s9 == " " and selected == 9:
-        s9 = player
+    if squares[0] == " " and selected == 1:
+        squares[0] = player
+    if squares[1] == " " and selected == 2:
+        squares[1] = player
+    if squares[2] == " " and selected == 3:
+        squares[2] = player
+    if squares[3] == " " and selected == 4:
+        squares[3] = player
+    if squares[4] == " " and selected == 5:
+        squares[4] = player
+    if squares[5] == " " and selected == 6:
+        squares[5] = player
+    if squares[6] == " " and selected == 7:
+        squares[6] = player
+    if squares[7] == " " and selected == 8:
+        squares[7] = player
+    if squares[8] == " " and selected == 9:
+        squares[8] = player
     showGrid()
-    if s1 == player and s2 == player and s3 == player or s4 == player and s5 == player and s6 == player or s7 == player and s8 == player and s9 == player or s1 == player and s4 == player and s7 == player or s2 == player and s5 == player and s8 == player or s3 == player and s6 == player and s9 == player or s1 == player and s5 == player and s9 == player or s3 == player and s5 == player and s7 == player:
+    if squares[0] == player and squares[1] == player and squares[2] == player or squares[3] == player and squares[4] == player and squares[5] == player or squares[6] == player and squares[7] == player and squares[8] == player or squares[0] == player and squares[3] == player and squares[6] == player or squares[1] == player and squares[4] == player and squares[7] == player or squares[2] == player and squares[5] == player and squares[8] == player or squares[0] == player and squares[4] == player and squares[8] == player or squares[2] == player and squares[4] == player and squares[6] == player:
         win = player
         break
-    if player == "X":
-        player = "O"
+    if bot == 2:
+        if player == "X":
+            player = "O"
+        if player == "O":
+            player = "X"
     else:
-        player = "X"
-    
+#Analyzes wich square is unoccupied
+        for index, square in enumerate(squares):
+            if square == " ":
+                randChoice.append(index)
+#Will always go for a win if it has one
+        if (squares[2] == "O" and squares[1] == "O" or squares[4] == "O" and squares[8] == "O" or squares[3] == "O" and squares[6] == "O") and squares[0] == " ":
+                squares[0] = "O"
+        elif (squares[2] == "O" and squares[0] == "O" or squares[4] == "O" and squares[7] == "O") and squares[1] == " ":
+            squares[1] = "O"
+        elif (squares[1] == "O" and squares[0] == "O" or squares[4] == "O" and squares[6] == "O" or squares[5] == "O" and squares[8] == "O") and squares[2] == " ":
+            squares[2] = "O"
+        elif (squares[6] == "O" and squares[0] == "O" or squares[4] == "O" and squares[5] == "O") and squares[3] == " ":
+            squares[3] = "O"
+        elif (squares[8] == "O" and squares[0] == "O" or squares[1] == "O" and squares[7] == "O" or squares[2] == "O" and squares[6] == "O" or squares[3] == "O" and squares[5] == "O") and squares[4] == " ":
+            squares[4] = "O"
+        elif (squares[2] == "O" and squares[8] == "O" or squares[4] == "O" and squares[3] == "O") and squares[5] == " ":
+            squares[5] = "O"
+        elif (squares[3] == "O" and squares[0] == "O" or squares[4] == "O" and squares[2] == "O" or squares[7] == "O" and squares[8] == "O") and squares[6] == " ":
+            squares[6] = "O"
+        elif (squares[1] == "O" and squares[4] == "O" or squares[6] == "O" and squares[8] == "O") and squares[7] == " ":
+            squares[7] = "O"
+        elif (squares[0] == "O" and squares[4] == "O" or squares[2] == "O" and squares[5] == "O" or squares[6] == "O" and squares[7] == "O") and squares[8] == " ":
+            squares[8] = "O"
+#If it has no win, it will look for threats and stop them
+        else:
+            if (squares[2] == player and squares[1] == player or squares[4] == player and squares[8] == player or squares[3] == player and squares[6] == player) and squares[0] == " ":
+                squares[0] = "O"
+            elif (squares[2] == player and squares[0] == player or squares[4] == player and squares[7] == player) and squares[1] == " ":
+                squares[1] = "O"
+            elif (squares[1] == player and squares[0] == player or squares[4] == player and squares[6] == player or squares[5] == player and squares[8] == player) and squares[2] == " ":
+                squares[2] = "O"
+            elif (squares[6] == player and squares[0] == player or squares[4] == player and squares[5] == player) and squares[3] == " ":
+                squares[3] = "O"
+            elif (squares[8] == player and squares[0] == player or squares[1] == player and squares[7] == player or squares[2] == player and squares[6] == player or squares[3] == player and squares[5] == player) and squares[4] == " ":
+                squares[4] = "O"
+            elif (squares[2] == player and squares[8] == player or squares[4] == player and squares[3] == player) and squares[5] == " ":
+                squares[5] = "O"
+            elif (squares[3] == player and squares[0] == player or squares[4] == player and squares[2] == player or squares[7] == player and squares[8] == player) and squares[6] == " ":
+                squares[6] = "O"
+            elif (squares[1] == player and squares[4] == player or squares[6] == player and squares[8] == player) and squares[7] == " ":
+                squares[7] = "O"
+            elif (squares[0] == player and squares[4] == player or squares[2] == player and squares[5] == player or squares[6] == player and squares[7] == player) and squares[8] == " ":
+                squares[8] = "O"
+#If there is no win or threat, the bot will select a random square
+            else:
+                botChoice = random.choice(randChoice)
+                squares[botChoice] = "O"
+        showGrid()
+        if squares[0] == bot and squares[1] == bot and squares[2] == bot or squares[3] == bot and squares[4] == bot and squares[5] == bot or squares[6] == bot and squares[7] == bot and squares[8] == bot or squares[0] == bot and squares[3] == bot and squares[6] == bot or squares[1] == bot and squares[4] == bot and squares[7] == bot or squares[2] == bot and squares[5] == bot and squares[8] == bot or squares[0] == bot and squares[4] == bot and squares[8] == bot or squares[2] == bot and squares[4] == bot and squares[6] == bot:
+            win = bot
+            break
+
 #End of game
-print(f"{player} WINS")
+print(f"{win} WINS")
 
