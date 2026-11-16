@@ -1,17 +1,14 @@
 import random
 #This is Tic Tac Toe with another player
 bot = "O"
-#while bot != "1" and bot != "2":
-#    bot = input("Please enter either 1 or 2. Are there 1 or 2 players ? ")
-#bot = int(bot)
+
+bot = input("Type anything to play against a bot. If not, just press ENTER. ")
+if bot != "":
+    bot = "O"
+    
 player = "X"
 squares = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
 
-randChoice = []
-for index, square in enumerate(squares):
-    if square == " ":
-        randChoice.append(index)
-print(randChoice)
 squares[0] = " "
 squares[1] = " "
 squares[2] = " "
@@ -45,22 +42,25 @@ while win == "no":
     if squares[8] == " " and selected == 9:
         squares[8] = player
     showGrid()
+#Checks for 3 in a row
     if squares[0] == player and squares[1] == player and squares[2] == player or squares[3] == player and squares[4] == player and squares[5] == player or squares[6] == player and squares[7] == player and squares[8] == player or squares[0] == player and squares[3] == player and squares[6] == player or squares[1] == player and squares[4] == player and squares[7] == player or squares[2] == player and squares[5] == player and squares[8] == player or squares[0] == player and squares[4] == player and squares[8] == player or squares[2] == player and squares[4] == player and squares[6] == player:
         win = player
         break
-    if bot == 2:
+#Alternates players turn and verifies if bot is on
+    if bot == "":
         if player == "X":
             player = "O"
-        if player == "O":
+        else:
             player = "X"
     else:
 #Analyzes wich square is unoccupied
+        randChoice = []
         for index, square in enumerate(squares):
             if square == " ":
                 randChoice.append(index)
 #Will always go for a win if it has one
         if (squares[2] == "O" and squares[1] == "O" or squares[4] == "O" and squares[8] == "O" or squares[3] == "O" and squares[6] == "O") and squares[0] == " ":
-                squares[0] = "O"
+            squares[0] = "O"
         elif (squares[2] == "O" and squares[0] == "O" or squares[4] == "O" and squares[7] == "O") and squares[1] == " ":
             squares[1] = "O"
         elif (squares[1] == "O" and squares[0] == "O" or squares[4] == "O" and squares[6] == "O" or squares[5] == "O" and squares[8] == "O") and squares[2] == " ":
